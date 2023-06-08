@@ -9,51 +9,10 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $reviews = [
-        [
-            'no' => 1,
-            'film' => 'The Shawshank Redemption',
-            'user' => 'image.png',
-            'rating' => 'Drama',
-            'review' => 'USA',
-            'tanggal' => 1994,
-        ],
-        [
-            'no' => 2,
-            'film' => 'The Shawshank Redemption',
-            'user' => 'image.png',
-            'rating' => 'Drama',
-            'review' => 'USA',
-            'tanggal' => 1994,
-        ],
-        [
-            'no' => 3,
-            'film' => 'The Shawshank Redemption',
-            'user' => 'image.png',
-            'rating' => 'Drama',
-            'review' => 'USA',
-            'tanggal' => 1994,
-        ],
-        [
-            'no' => 4,
-            'film' => 'The Shawshank Redemption',
-            'user' => 'image.png',
-            'rating' => 'Drama',
-            'review' => 'USA',
-            'tanggal' => 1994,
-        ],
-        [
-            'no' => 5,
-            'film' => 'The Shawshank Redemption',
-            'user' => 'image.png',
-            'rating' => 'Drama',
-            'review' => 'USA',
-            'tanggal' => 1994,
-        ],
-    ];
+    protected $fillable = ['film', 'user', 'rating', 'review', 'tanggal'];
 
     public function getAllReviews()
     {
-        return $this->reviews;
+        return $this->review;
     }
 }

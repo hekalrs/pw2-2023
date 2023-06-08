@@ -9,18 +9,7 @@ class Genre extends Model
 {
     use HasFactory;
 
-    protected $genres = [
-        [
-            'no' => 1,
-            'nama_genre' => 'Parasite',
-            'deskripsi' => 'image.png',
-        ],
-        [
-            'no' => 2,
-            'nama_genre' => 'The God Father',
-            'deskripsi' => 'image.png',
-        ],
-    ];
+    protected $fillable = ['nama', 'deskripsi'];
 
     public function getAllGenres()
     {
