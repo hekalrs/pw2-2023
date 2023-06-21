@@ -76,7 +76,7 @@ class ReviewController extends Controller
         ]);
 
         $review->update($validateData);
-        return redirect('/reviews')->with('success', 'Data berhasil diupdate');
+        return redirect('/reviewssassaaqA')->with('success', 'Data berhasil diupdate');
     }
 
     /**

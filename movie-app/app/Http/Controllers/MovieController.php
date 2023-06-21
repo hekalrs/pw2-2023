@@ -6,6 +6,7 @@ use App\Models\Movie;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -43,6 +44,14 @@ class MovieController extends Controller
             'rating' => 'required|numeric',
         ]);
 
+        if($request->hasFile('poster')) {
+            $extention = $request->file('poster')->getClientOriginalExtension();
+            $imageName = time() . '.' . $extention;
+
+            $request->file('poster')->storeAs('assets/img', $imageName, 'public');
+            $validateData['poster'] = $imageName;
+        }
+
         Movie::create($validateData);
         return redirect('/movies')->with('success', 'Data berhasil ditambahkan');
     }
@@ -77,6 +86,16 @@ class MovieController extends Controller
             'tahun' => 'required|integer',
             'rating' => 'required|numeric',
         ]);
+
+        if($request->hasFile('poster')) {
+            Storage::disk('public')->delete('assets/img/' . $movie->poster);
+
+            $extention = $request->file('poster')->getClientOriginalExtension();
+            $imageName = time() . '.' . $extention;
+
+            $request->file('poster')->storeAs('assets/img', $imageName, 'public');
+            $validateData['poster'] = $imageName;
+        }
 
         $movie->update($validateData);
         return redirect('/movies')->with('success', 'Data berhasil diupdate');

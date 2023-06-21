@@ -23,14 +23,15 @@
             Edit Data
         </div>
         <div class="card-body">
-            <form method="POST" action="/movies/{{ $movie->id }}">
+            <form enctype="multipart/form-data" method="POST" action="/movies/{{ $movie->id }}">
                 @csrf
                 @method('PUT')
                 <label for="judul">Title:</label><br>
                 <input type="text" id="judul" name="judul" class="form-control" value="{{ $movie->judul }}"><br><br>
 
                 <label for="poster">Poster:</label><br>
-                <input type="text" id="poster" name="poster" class="form-control" value="{{ $movie->poster }}"><br><br>
+                <img style="width: 200px" src="/assets/img/{{$movie->poster}}" alt="">
+                <input type="file" id="poster" name="poster" class="form-control" value="{{ $movie->poster }}"><br><br>
 
                 <label for="genre_id">Genre:</label><br>
                 <select id="genre_id" class="form-control" name="genre_id">

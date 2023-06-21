@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\GenreController;
@@ -43,6 +44,11 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
 Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit']);
 Route::put('/reviews/{review}', [ReviewController::class, 'update']);
 
-Route::get('/users', function () {
-return view('users/index');
-});
+Route::group(['middleware' => 'auth'], function () {
+Route::resource('/movies', MovieController::class);});
+
+Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegistrationForm']);
+Route::post('/register', [AuthController::class, 'register']);
